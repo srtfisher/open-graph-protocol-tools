@@ -6,7 +6,7 @@
  * @link http://ogp.me/ Open Graph Protocol
  * @version 1.3
  */
-class OpenGraphProtocol {
+class Manager {
 	/**
 	 * Version
 	 * @var string
