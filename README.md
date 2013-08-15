@@ -24,7 +24,19 @@ The [Facebook Object Debugger](http://developers.facebook.com/tools/debug) displ
 
 [Google indexes Open Graph protocol markup](https://developers.google.com/+/plugins/+1button/#plus-snippet) to populate a Google+ activity post.
 
-## Sample code
+## Structure
+The Application includes a number of core objects in the Open Graph protocol. They are all located under the `OpenGraph` namespace.
+
+**Objects**:
+- `OpenGraph\Objects\Article`
+- `OpenGraph\Objects\Book`
+- `OpenGraph\Objects\Profile`
+- `OpenGraph\Objects\Video`
+
+**Media**:
+- `OpenGraph\Media\Audio`
+- `OpenGraph\Media\Image`
+- `OpenGraph\Media\Video`
 
 ### Core Open Graph protocol
 
@@ -32,21 +44,21 @@ Support for structured properties for image, video, and audio objects.
 
 ```php
 <?php
-$image = new OpenGraphProtocolImage();
+$image = new OpenGraph\Media\Image();
 $image->setURL( 'http://example.com/image.jpg' );
 $image->setSecureURL( 'https://example.com/image.jpg' );
 $image->setType( 'image/jpeg' );
 $image->setWidth( 400 );
 $image->setHeight( 300 );
 
-$video = new OpenGraphProtocolVideo();
+$video = new OpenGraph\Media\Video();
 $video->setURL( 'http://example.com/video.swf' );
 $video->setSecureURL( 'https://example.com/video.swf' );
 $video->setType( OpenGraphProtocolVideo::extension_to_media_type( pathinfo( parse_url( $video->getURL(), PHP_URL_PATH ), PATHINFO_EXTENSION ) ) );
 $video->setWidth( 500 );
 $video->setHeight( 400 );
 
-$audio = new OpenGraphProtocolAudio();
+$audio = new OpenGraph\Media\Audio();
 $audio->setURL( 'http://example.com/audio.mp3' );
 $audio->setSecureURL( 'https://example.com/audio.mp3' );
 $audio->setType('audio/mpeg');
@@ -57,7 +69,7 @@ Declare a new `OpenGraphProtocol` object and set some properties. Add structured
 
 ```php
 <?php
-$ogp = new OpenGraphProtocol();
+$ogp = new OpenGraph\Manager();
 $ogp->setLocale( 'en_US' );
 $ogp->setSiteName( 'Happy place' );
 $ogp->setTitle( 'Hello world' );
@@ -85,7 +97,7 @@ Build global objects and attributes. Set time values using either an ISO 8601 fo
 
 ```php
 <?php
-$article = new OpenGraphProtocolArticle();
+$article = new OpenGraph\Objects\Article();
 $article->setPublishedTime( '2011-11-03T01:23:45Z' );
 $article->setModifiedTime( new DateTime( 'now', new DateTimeZone( 'America/Los_Angeles' ) ) );
 $article->setExpirationTime( '2011-12-31T23:59:59+00:00' );

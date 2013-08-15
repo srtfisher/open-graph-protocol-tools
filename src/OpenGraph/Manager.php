@@ -1,22 +1,4 @@
-<?php
-/**
- * Open Graph Protocol data class. Define and validate OGP values.
- *
- * @package open-graph-protocol-tools
- * @author Niall Kennedy <niall@niallkennedy.com>
- * @version 1.3
- * @copyright Public Domain
- */
-
-/**
- * Open Graph protocol type labels are passed through gettext message interpreters for the current context.
- * Fake the interpreter function alias if not defined
- */
-if ( !function_exists('_') ):
-function _( $text, $domain='' ) {
-	return $text;
-}
-endif;
+<?php namespace OpenGraph;
 
 /**
  * Validate inputted text against Open Graph Protocol requirements by parameter.
@@ -601,7 +583,3 @@ class OpenGraphProtocol {
 		return $this;
 	}
 }
-
-include_once dirname(__FILE__) . '/media.php';  // image, video, audio
-include_once dirname(__FILE__) . '/objects.php'; // global objects: profile, article
-?>
