@@ -57,8 +57,8 @@ abstract class MediaBase {
 	public function setURL( $url ) {
 		if ( is_string( $url ) && !empty( $url ) ) {
 			$url = trim($url);
-			if (OpenGraphProtocol::VERIFY_URLS) {
-				$url = OpenGraphProtocol::is_valid_url( $url, array( 'text/html', 'application/xhtml+xml' ) );
+			if (OpenGraph\Manager::VERIFY_URLS) {
+				$url = OpenGraph\Manager::is_valid_url( $url, array( 'text/html', 'application/xhtml+xml' ) );
 			}
 			if (!empty($url))
 				$this->url = $url;
@@ -90,9 +90,9 @@ abstract class MediaBase {
 	public function setSecureURL( $url ) {
 		if ( is_string( $url ) && !empty( $url ) ) {
 			$url = trim($url);
-			if (OpenGraphProtocol::VERIFY_URLS) {
+			if (OpenGraph\Manager::VERIFY_URLS) {
 				if ( parse_url($url,PHP_URL_SCHEME) === 'https' ) {
-					$url = OpenGraphProtocol::is_valid_url( $url, array( 'text/html', 'application/xhtml+xml' ) );
+					$url = OpenGraph\Manager::is_valid_url( $url, array( 'text/html', 'application/xhtml+xml' ) );
 				} else {
 					$url = '';
 				}

@@ -1,6 +1,6 @@
-<?php namespce OpenGraph\Objects;
+<?php namespace OpenGraph\Objects;
 
-abstract class OpenGraphProtocolObject {
+abstract class ObjectBase {
 	const PREFIX ='';
 	const NS='';
 
@@ -9,7 +9,7 @@ abstract class OpenGraphProtocolObject {
 	 * @return string HTML meta element string
 	 */
 	public function toHTML() {
-		return rtrim( OpenGraphProtocol::buildHTML( get_object_vars($this), static::PREFIX ), PHP_EOL );
+		return rtrim( OpenGraph\Manager::buildHTML( get_object_vars($this), static::PREFIX ), PHP_EOL );
 	}
 
 	/**
@@ -17,8 +17,8 @@ abstract class OpenGraphProtocolObject {
 	 * @param DateTime $date date to convert
 	 * @return string ISO 8601 formatted datetime string
 	 */
-	public static function datetime_to_iso_8601( DateTime $date ) {
-		$date->setTimezone(new DateTimeZone('GMT'));
+	public static function datetime_to_iso_8601( \DateTime $date ) {
+		$date->setTimezone(new \DateTimeZone('GMT'));
 		return $date->format('c');
 	}
 
@@ -31,8 +31,8 @@ abstract class OpenGraphProtocolObject {
 	 */
 	public static function is_valid_url( $url ) {
 		if ( is_string($url) && !empty($url) ) {
-			if (OpenGraphProtocol::VERIFY_URLS) {
-				$url = OpenGraphProtocol::is_valid_url( $url, array( 'text/html', 'application/xhtml+xml' ) );
+			if (OpenGraph\Manager::VERIFY_URLS) {
+				$url = OpenGraph\Manager::is_valid_url( $url, array( 'text/html', 'application/xhtml+xml' ) );
 				if (!empty($url))
 					return true;
 			} else {
