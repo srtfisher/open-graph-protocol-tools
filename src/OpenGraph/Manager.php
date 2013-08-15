@@ -518,7 +518,7 @@ class OpenGraphProtocol {
 	 *
 	 * @param OpenGraphProtocolImage $image image object to add
 	 */
-	public function addImage( OpenGraphProtocolImage $image ) {
+	public function addImage( OpenGraph\Media\Image $image ) {
 		$image_url = $image->getURL();
 		if ( empty($image_url) )
 			return;
@@ -544,7 +544,7 @@ class OpenGraphProtocol {
 	 *
 	 * @param OpenGraphProtocolAudio $audio audio object to add
 	 */
-	public function addAudio( OpenGraphProtocolAudio $audio ) {
+	public function addAudio( OpenGraph\Media\Audio $audio ) {
 		$audio_url = $audio->getURL();
 		if ( empty($audio_url) )
 			return;
@@ -570,7 +570,7 @@ class OpenGraphProtocol {
 	 *
 	 * @param OpenGraphProtocolVideo $video video object to add
 	 */
-	public function addVideo( OpenGraphProtocolVideo $video ) {
+	public function addVideo( OpenGraph\Media\Video $video ) {
 		$video_url = $video->getURL();
 		if ( empty($video_url) )
 			return;
