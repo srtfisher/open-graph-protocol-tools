@@ -2,7 +2,8 @@
     "name": "srtfisher/open-graph-protocol-tools",
     "description": "Open Graph Protocol Helper tools to build meta tags",
     "version": "0.1",
-    "homepage": "http://ogp.me/",
+    "license": "MIT",
+    "homepage": "https://github.com/srtfisher/open-graph-protocol-tools",
     "require": {
         "php": ">=5.2"
     },
