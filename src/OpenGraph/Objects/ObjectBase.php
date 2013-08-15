@@ -1,5 +1,11 @@
 <?php namespace OpenGraph\Objects;
+use OpenGraph\Manager;
 
+/**
+ * Base Class for Objects to build from
+ *
+ * @package opengraph
+ */
 abstract class ObjectBase {
 	const PREFIX ='';
 	const NS='';
@@ -9,7 +15,7 @@ abstract class ObjectBase {
 	 * @return string HTML meta element string
 	 */
 	public function toHTML() {
-		return rtrim( OpenGraph\Manager::buildHTML( get_object_vars($this), static::PREFIX ), PHP_EOL );
+		return rtrim( Manager::buildHTML( get_object_vars($this), static::PREFIX ), PHP_EOL );
 	}
 
 	/**
@@ -31,8 +37,8 @@ abstract class ObjectBase {
 	 */
 	public static function is_valid_url( $url ) {
 		if ( is_string($url) && !empty($url) ) {
-			if (OpenGraph\Manager::VERIFY_URLS) {
-				$url = OpenGraph\Manager::is_valid_url( $url, array( 'text/html', 'application/xhtml+xml' ) );
+			if (Manager::VERIFY_URLS) {
+				$url = Manager::is_valid_url( $url, array( 'text/html', 'application/xhtml+xml' ) );
 				if (!empty($url))
 					return true;
 			} else {
