@@ -1,10 +1,10 @@
-# Open Graph protocol
+# Open Graph Protocol Tools
 
 ![Open Graph protocol](http://ogp.me/open_graph_protocol_logo.png "Open Graph protocol logo")
 
 [Open Graph protocol](http://ogp.me/ "Open Graph protocol community site") enhances information associated with a webpage through key-value pairs included as `<meta>` elements in your HTML. This additional data is consumed by social sharing sites, populating a story preview for shared links and referenced objects in the social graph.
 
-This project includes tools to validate and sanitize inputs before generating Open Graph protocol markup on your webpages. This project standardizes outputs for easy indexing by consuming agents.
+This project includes tools to validate and sanitize inputs before generating Open Graph protocol markup on your webpages. This project standardizes outputs for easy indexing by consuming agents. We also let you consume remote pages and attempt to parse the Open Graph tags there of.
 
 ## Consuming agents
 
@@ -134,3 +134,31 @@ foreach ( $ogp_objects as $ogp_object ) {
 <?php echo rtrim( $meta, PHP_EOL ); ?>
 </head>
 ```
+
+## Fetching
+Commonly used in applications, fetching the contents of a remote page to get the Open Graph information can be a tedious task. Often time, you will have to get a webpage, write some regex to get the IMGs from it and MAYBE it'll work. Let us fix that.
+
+```php
+<?php
+// also shown in test.php
+
+// Include Composer Autoloader
+include 'vendor/autoload.php';
+
+$fetch = new OpenGraph\Fetcher('http://www.cnn.com/2013/08/15/opinion/bergen-zawahiri-egypt/index.html?hpt=hp_t1');
+var_dump($fetch->getKeys());
+?>
+```
+
+That'll give you something that looks like this:
+<pre>
+array (size=6)
+  'description' => string 'Ayman al-Zawahiri, who has warned against Islamist parties taking part in elections, is emerging as a stronger leader than predicted' (length=132)
+  'title' => string 'Al Qaeda leader's 'I told you so' on Egypt' (length=42)
+  'type' => string 'article' (length=7)
+  'url' => string 'http://www.cnn.com/2013/08/15/opinion/bergen-zawahiri-egypt/index.html' (length=70)
+  'site_name' => string 'CNN' (length=3)
+  'image' => string 'http://i2.cdn.turner.com/cnn/dam/assets/130815122452-08-egypt-0815-story-top.jpg' (length=80)
+</pre>
+
+We're looking for ways to improve it still (find an image in the page's contents if `og:image` isn't specified). Stay tuned.
