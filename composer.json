@@ -1,0 +1,14 @@
+{
+    "name": "srtfisher/open-graph-protocol-tools",
+    "description": "Open Graph Protocol Helper tools to build meta tags",
+    "version": "0.1",
+    "homepage": "http://ogp.me/",
+    "require": {
+        "php": ">=5.2"
+    },
+    "autoload": {
+        "classmap": [
+            "open-graph-protocol.php"
+        ]
+    }
+}
