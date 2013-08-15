@@ -5,7 +5,8 @@
     "license": "MIT",
     "homepage": "https://github.com/srtfisher/open-graph-protocol-tools",
     "require": {
-        "php": ">=5.2"
+        "php": ">=5.4",
+        "guzzle/guzzle": "v3.7.2"
     },
     "autoload": {
         "psr-0": {
